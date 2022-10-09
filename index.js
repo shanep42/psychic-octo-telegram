@@ -1,6 +1,8 @@
 const inquirer = require('inquirer');
 
-function goToMainMenu {inquirer
+
+function goToMainMenu() {
+    inquirer
     .prompt([
         {
             name: 'selection',
@@ -34,3 +36,99 @@ function goToMainMenu {inquirer
                 break;
         }
 } )}
+
+function viewAllEmployees() {
+    //TODO: display db data for: employee id, first name, last name, job title, department, salaries, manager
+}
+
+function addEmployee(){
+    inquirer
+    .prompt([
+        {
+            name: 'firstName',
+            type: 'input',
+            message: 'Enter employee first name'
+        },{
+            name: 'lastName',
+            type: 'input',
+            message: 'Enter employee last name'
+        },{
+            name: 'empRole',
+            type: 'input',
+            // TODO: should maybe pull from the database and look for roles to display as options, instead of accepting any input?
+            message: 'Enter employee role'
+        },{
+            name: 'empManager',
+            type: 'input',
+            message: 'Enter manager'
+        }
+    ])
+    .then ((answers) => {
+        // TODO: write answers to db
+        console.log(answers)
+    })
+}
+
+function updateEmployeeRole(){
+    inquirer
+    .prompt([
+        {
+            name: 'empSelection',
+            type: 'list',
+            message: 'Select an employee to update:',
+            //TODO: Get choices from database
+            choices: []
+        }
+    ])
+}
+
+function viewAllRoles(){
+    //TODO: Display roles from Database
+}
+
+function addARole(){
+    inquirer
+    .prompt([
+        {
+            name: 'roleName',
+            type: 'input',
+            message: 'Enter role name'
+        },{
+            name: 'roleSalary',
+            type: 'input',
+            message: 'Enter salary'
+        },{
+            name: 'roleDepartment',
+            // TODO: Get roles from DB for list selection instead of input
+            type: 'input',
+            message: 'Enter department'
+        }
+    ])
+    .then ((answer) => {
+        //TODO: Add answers to Database
+        // console.log("Role added")
+        console.log("INCOMPLETE")
+        goToMainMenu();
+    })
+}
+
+function viewAllDepartments(){
+    //TODO: Display all departments currently in Database
+}
+
+function addDepartment(){
+    inquirer
+    .prompt([
+        {
+            name: 'deptName',
+            type: 'input',
+            message: 'Enter department name'
+        }
+    ])
+    .then ((answer) => {
+        //TODO: Enter department into DB with auto-incremented ID
+        // console.log('Department Added')
+        console.log('INCOMPLETE');
+        goToMainMenu();
+    })
+}
