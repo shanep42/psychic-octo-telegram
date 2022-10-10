@@ -1,3 +1,5 @@
+-- Active: 1664840661577@@127.0.0.1@3306@inventory_db
+
 DROP DATABASE IF EXISTS company_db;
 
 CREATE DATABASE company_db;
@@ -26,7 +28,8 @@ CREATE TABLE
         first_name VARCHAR(30),
         last_name VARCHAR(30),
         role_id INT,
-        manager_id INT
+        manager_id INT,
+        PRIMARY KEY (id)
     );
 
 -- TODO: Shouldn't some of these use foreign keys?
