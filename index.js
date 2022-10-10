@@ -1,5 +1,6 @@
 require('dotenv').config();
 const inquirer = require('inquirer');
+const Connection = require('mysql2/typings/mysql/lib/Connection');
 const sequelize = require('./config/connection');
 
 
@@ -42,6 +43,9 @@ function goToMainMenu() {
 
 function viewAllEmployees() {
     //TODO: display db data for: employee id, first name, last name, job title, department, salaries, manager
+    let employees = connection.query('SELECT * FROM employee');
+    console.table(employees)
+
 }
 
 function addEmployee() {
