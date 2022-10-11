@@ -43,9 +43,10 @@ function goToMainMenu() {
 
 function viewAllEmployees() {
     //TODO: display db data for: employee id, first name, last name, job title, department, salaries, manager
-    // Employee.findAll().then((employeeData) => {
-    //     console.log(employeeData)
-    // })
+    sequelize.query('SELECT * FROM employees', (err, res) => {
+        if (err) throw err;
+        console.table(res);
+    })
 }
 
 function addEmployee() {
@@ -91,6 +92,10 @@ function updateEmployeeRole() {
 
 function viewAllRoles() {
     //TODO: Display roles from Database
+    sequelize.query('SELECT * FROM roles', (err, res) => {
+        if (err) throw err;
+        console.table(res)
+    })
 }
 
 function addARole() {
