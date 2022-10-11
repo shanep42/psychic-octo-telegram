@@ -1,14 +1,14 @@
--- Active: 1664840661577@@127.0.0.1@3306@company_db
-
-INSERT INTO department (name)
+-- Active: 1664495737510@@127.0.0.1@3306@company_db
+USE company_db;
+INSERT INTO departments (name)
 VALUES ('Sales'), ('Engineering'), ('Finance'), ('Legal');
 
 INSERT INTO
-    role (title, department_id, salary)
+    roles (title, department_id, salary)
 VALUES ('Sales Lead', 1, 100000), ('Salesperson', 1, 80000), ('Lead Engineer', 2, 150000), ('Software Engineer', 2, 120000), ('Account Manager', 3, 160000), ('Accountant', 3, 125000), ('Legal Team Lead', 4, 250000), ('Lawyer', 4, 190000);
 
 INSERT INTO
-    employee (
+    employees (
         first_name,
         last_name,
         role_id,

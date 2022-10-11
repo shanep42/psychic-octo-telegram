@@ -1,6 +1,7 @@
 require('dotenv').config();
 const inquirer = require('inquirer');
 const sequelize = require('./config/connection');
+//const Employee = require('./models/employee')
 
 
 function goToMainMenu() {
@@ -42,12 +43,9 @@ function goToMainMenu() {
 
 function viewAllEmployees() {
     //TODO: display db data for: employee id, first name, last name, job title, department, salaries, manager
-    sequelize.query('SELECT * FROM employee', (err, res) => {
-        if (err) {
-            throw err;
-        }
-        console.table(res)
-    })
+    // Employee.findAll().then((employeeData) => {
+    //     console.log(employeeData)
+    // })
 }
 
 function addEmployee() {
@@ -142,13 +140,13 @@ function addDepartment() {
         })
 }
 
-sequelize
-    .authenticate()
-    .then(() => {
-        console.log('Connection established')
-    })
-    .catch(err => {
-        console.log('Error:', error)
-    })
+// sequelize
+//     .authenticate()
+//     .then(() => {
+//         console.log('Connection established')
+//     })
+//     .catch(err => {
+//         console.log('Error:', error)
+//     })
 
 goToMainMenu();
