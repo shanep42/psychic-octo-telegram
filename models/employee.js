@@ -20,7 +20,7 @@ Employee.init(
             type: DataTypes.INTEGER
         },
         manager_id: {
-            type: DataTypes.INT
+            type: DataTypes.INTEGER
         }
     },
     {
@@ -28,7 +28,7 @@ Employee.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'employee'
+        modelName: 'employees'
     }
 );
 

@@ -1,7 +1,9 @@
 require('dotenv').config();
 const inquirer = require('inquirer');
 const sequelize = require('./config/connection');
-//const Employee = require('./models/employee')
+const Employee = require('./models/employee');
+const Role = require('./models/role');
+const Department = require('./models/department');
 
 
 function goToMainMenu() {
@@ -43,9 +45,9 @@ function goToMainMenu() {
 
 function viewAllEmployees() {
     //TODO: display db data for: employee id, first name, last name, job title, department, salaries, manager
-    sequelize.query('SELECT * FROM employees', (err, res) => {
-        if (err) throw err;
-        console.table(res);
+    Employee.findAll()
+    .then((employeeData)=> {
+        console.table(employeeData)
     })
 }
 
@@ -92,10 +94,6 @@ function updateEmployeeRole() {
 
 function viewAllRoles() {
     //TODO: Display roles from Database
-    sequelize.query('SELECT * FROM roles', (err, res) => {
-        if (err) throw err;
-        console.table(res)
-    })
 }
 
 function addARole() {

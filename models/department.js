@@ -11,7 +11,7 @@ Department.init(
             autoIncrement: true
         },
         name: {
-            typer: DataTypes.STRING
+            type: DataTypes.STRING
         }
     },
     {
@@ -19,7 +19,7 @@ Department.init(
         timestamps: false,
         freezeTableName: true,
         underscored: true,
-        modelName: 'department'
+        modelName: 'departments'
     }
 );
 
