@@ -69,16 +69,26 @@ function addEmployee() {
                 name: 'empRole',
                 type: 'input',
                 // TODO: should maybe pull from the database and look for roles to display as options, instead of accepting any input?
-                message: 'Enter employee role'
+                message: 'Enter employee role ID'
             }, {
                 name: 'empManager',
                 type: 'input',
-                message: 'Enter manager'
+                message: 'Enter manager ID'
             }
         ])
         .then((answers) => {
-            // TODO: write answers to db
-            console.log(answers)
+            Employee.create(
+                {
+                    first_name: answers.firstName,
+                    last_name: answers.lastName,
+                    role_id: answers.empRole,
+                    manager_id: answers.empManager
+                })
+                .then((employee) => {
+                    viewAllEmployees();
+                    console.log(`New employee ${employee.first_name} ${employee.last_name} added successfully`);
+                    goToMainMenu();
+                })
         })
 }
 
@@ -121,14 +131,21 @@ function addARole() {
                 name: 'roleDepartment',
                 // TODO: Get roles from DB for list selection instead of input
                 type: 'input',
-                message: 'Enter department'
+                message: 'Enter department ID'
             }
         ])
         .then((answer) => {
-            //TODO: Add answers to Database
-            // console.log("Role added")
-            console.log("INCOMPLETE")
-            goToMainMenu();
+            Role.create(
+                {
+                    name: answer.roleName,
+                    salary: answer.roleSalary,
+                    department_id: answer.roleDepartment
+                })
+                .then((role) => {
+                    viewAllRoles();
+                    console.log(`New role ${role.name} added with Role ID ${role.id}`);
+                    goToMainMenu();
+                })
         })
 }
 
@@ -153,10 +170,15 @@ function addDepartment() {
             }
         ])
         .then((answer) => {
-            //TODO: Enter department into DB with auto-incremented ID
-            // console.log('Department Added')
-            console.log('INCOMPLETE');
-            goToMainMenu();
+            Department.create(
+                {
+                    name: answer.deptName
+                })
+                .then((department) => {
+                    viewAllDepartments();
+                    console.log(`New Department ${department.name} added with Department ID ${department.id}`);
+                    goToMainMenu();
+                })
         })
 }
 
