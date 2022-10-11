@@ -44,10 +44,13 @@ function goToMainMenu() {
 }
 
 function viewAllEmployees() {
-    //TODO: display db data for: employee id, first name, last name, job title, department, salaries, manager
+    //TODO: get foreign keys set up to show Manager names instead of manager employee.id in manager_id column
     Employee.findAll()
     .then((employeeData)=> {
-        console.table(employeeData)
+        employees = [];
+        employeeData.forEach(employee => employees.push(employee.toJSON()));
+        console.table(employees);
+        goToMainMenu();
     })
 }
 
@@ -93,7 +96,14 @@ function updateEmployeeRole() {
 }
 
 function viewAllRoles() {
-    //TODO: Display roles from Database
+    //TODO: Foreign key configuration
+    Role.findAll()
+    .then((roleData)=> {
+        roles = [];
+        roleData.forEach(role => roles.push(role.toJSON()));
+        console.table(roles);
+        goToMainMenu();
+    })
 }
 
 function addARole() {
@@ -123,7 +133,14 @@ function addARole() {
 }
 
 function viewAllDepartments() {
-    //TODO: Display all departments currently in Database
+    //TODO: Foreign key stuff
+    Department.findAll()
+    .then((departmentData)=> {
+        departments = [];
+        departmentData.forEach(department => departments.push(department.toJSON()));
+        console.table(departments);
+        goToMainMenu();
+    })
 }
 
 function addDepartment() {
