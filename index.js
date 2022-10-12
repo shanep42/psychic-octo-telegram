@@ -88,7 +88,6 @@ function addEmployee() {
                     manager_id: answers.empManager
                 })
                 .then((employee) => {
-                    viewAllEmployees();
                     console.log(`New employee ${employee.first_name} ${employee.last_name} added successfully`);
                     goToMainMenu();
                 })
@@ -116,21 +115,19 @@ function updateEmployee() {
             }
         ])
         .then((answer) => {
-            let editedField = answer.fieldToChange;
+            let editedField = answer.fieldToChange; 
+            const update = {};
+            update[editedField] = answer.newValue;
             console.log(editedField)
             Employee.update(
-                {
-                    editedField: answer.newValue
-                },
-                {
-                    where: {
-                        id: answer.empSelection
-                    }
+                update, {
+                    where: {id: answer.empSelection}
                 }
             )
-            console.log('Employee updated');
-            goToMainMenu();
-        })
+            .then(() => {
+            console.log('Employee updated'); 
+            goToMainMenu(); })
+    })
 }
 
 function viewAllRoles() {
@@ -172,7 +169,6 @@ function addARole() {
                     department_id: answer.roleDepartment
                 })
                 .then((role) => {
-                    viewAllRoles();
                     console.log(`New role ${role.title} added with Role ID ${role.id}`);
                     goToMainMenu();
                 })
@@ -207,7 +203,6 @@ function addDepartment() {
                     name: answer.deptName
                 })
                 .then((department) => {
-                    viewAllDepartments();
                     console.log(`New Department ${department.name} added with Department ID ${department.id}`);
                     goToMainMenu();
                 })
