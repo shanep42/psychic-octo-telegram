@@ -7,13 +7,14 @@ const Department = require('./models/department');
 
 
 function goToMainMenu() {
+    console.log("MAIN MENU");
     inquirer
         .prompt([
             {
                 name: 'selection',
                 type: 'list',
                 message: 'What would you like to do?',
-                choices: ['View All Employees', 'Add Employee', 'Update Employee Role', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department']
+                choices: ['View All Employees', 'Add Employee', 'Update Employee', 'View All Roles', 'Add Role', 'View All Departments', 'Add Department']
             }
         ])
         .then((answer) => {
@@ -24,8 +25,8 @@ function goToMainMenu() {
                 case 'Add Employee':
                     addEmployee();
                     break;
-                case 'Update Employee Role':
-                    updateEmployeeRole();
+                case 'Update Employee':
+                    updateEmployee();
                     break;
                 case 'View All Roles':
                     viewAllRoles();
@@ -44,7 +45,7 @@ function goToMainMenu() {
 }
 
 function viewAllEmployees() {
-    console.log('Employee View')
+    console.log('EMPLOYEE VIEW')
     //TODO: get foreign keys set up to show Manager names instead of manager employee.id in manager_id column
     Employee.findAll()
     .then((employeeData)=> {
@@ -56,6 +57,7 @@ function viewAllEmployees() {
 }
 
 function addEmployee() {
+    console.log("ADD AN EMPLOYEE");
     inquirer
         .prompt([
             {
@@ -93,21 +95,47 @@ function addEmployee() {
         })
 }
 
-function updateEmployeeRole() {
+function updateEmployee() {
+    console.log('UPDATE AN EMPLOYEE')
     inquirer
         .prompt([
             {
                 name: 'empSelection',
+                type: 'input',
+                message: 'Enter ID of employee to update:',
+                //TODO: This should be a choice from a list of employees, but I cannot get the employee names in the right format
+            },{
+                name: 'fieldToChange',
                 type: 'list',
-                message: 'Select an employee to update:',
-                //TODO: Get choices from database
-                choices: []
+                message: 'Select a field to change:',
+                choices: ['id', 'first_name', 'last_name', 'role_id', 'manager_id']
+            },{
+                name: 'newValue',
+                type: 'input',
+                message: 'Enter new value'
             }
         ])
+        .then((answer) => {
+            let editedField = answer.fieldToChange;
+            console.log(editedField)
+            Employee.update(
+                {
+                    editedField: answer.newValue
+                },
+                {
+                    where: {
+                        id: answer.empSelection
+                    }
+                }
+            )
+            console.log('Employee updated');
+            goToMainMenu();
+        })
 }
 
 function viewAllRoles() {
     //TODO: Foreign key configuration
+    console.log("ROLES VIEW");
     Role.findAll()
     .then((roleData)=> {
         roles = [];
@@ -118,6 +146,7 @@ function viewAllRoles() {
 }
 
 function addARole() {
+    console.log('ADD A ROLE');
     inquirer
         .prompt([
             {
@@ -151,6 +180,7 @@ function addARole() {
 }
 
 function viewAllDepartments() {
+    console.log('DEPARTMENT VIEW');
     //TODO: Foreign key stuff
     Department.findAll()
     .then((departmentData)=> {
@@ -162,6 +192,7 @@ function viewAllDepartments() {
 }
 
 function addDepartment() {
+    console.log('ADD A DEPARTMENT')
     inquirer
         .prompt([
             {
