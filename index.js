@@ -30,7 +30,7 @@ function goToMainMenu() {
                 case 'View All Roles':
                     viewAllRoles();
                     break;
-                case 'Add a Role':
+                case 'Add Role':
                     addARole();
                     break;
                 case 'View All Departments':
@@ -44,6 +44,7 @@ function goToMainMenu() {
 }
 
 function viewAllEmployees() {
+    console.log('Employee View')
     //TODO: get foreign keys set up to show Manager names instead of manager employee.id in manager_id column
     Employee.findAll()
     .then((employeeData)=> {
@@ -137,13 +138,13 @@ function addARole() {
         .then((answer) => {
             Role.create(
                 {
-                    name: answer.roleName,
+                    title: answer.roleName,
                     salary: answer.roleSalary,
                     department_id: answer.roleDepartment
                 })
                 .then((role) => {
                     viewAllRoles();
-                    console.log(`New role ${role.name} added with Role ID ${role.id}`);
+                    console.log(`New role ${role.title} added with Role ID ${role.id}`);
                     goToMainMenu();
                 })
         })
