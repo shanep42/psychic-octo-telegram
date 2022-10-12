@@ -1,4 +1,4 @@
--- Active: 1664495737510@@127.0.0.1@3306@company_db
+-- Active: 1664840661577@@127.0.0.1@3306@company_db
 
 DROP DATABASE IF EXISTS company_db;
 

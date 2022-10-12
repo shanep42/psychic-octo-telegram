@@ -48,12 +48,12 @@ function viewAllEmployees() {
     console.log('EMPLOYEE VIEW')
     //TODO: get foreign keys set up to show Manager names instead of manager employee.id in manager_id column
     Employee.findAll()
-    .then((employeeData)=> {
-        employees = [];
-        employeeData.forEach(employee => employees.push(employee.toJSON()));
-        console.table(employees);
-        goToMainMenu();
-    })
+        .then((employeeData) => {
+            employees = [];
+            employeeData.forEach(employee => employees.push(employee.toJSON()));
+            console.table(employees);
+            goToMainMenu();
+        })
 }
 
 function addEmployee() {
@@ -103,43 +103,44 @@ function updateEmployee() {
                 type: 'input',
                 message: 'Enter ID of employee to update:',
                 //TODO: This should be a choice from a list of employees, but I cannot get the employee names in the right format
-            },{
+            }, {
                 name: 'fieldToChange',
                 type: 'list',
                 message: 'Select a field to change:',
                 choices: ['id', 'first_name', 'last_name', 'role_id', 'manager_id']
-            },{
+            }, {
                 name: 'newValue',
                 type: 'input',
                 message: 'Enter new value'
             }
         ])
         .then((answer) => {
-            let editedField = answer.fieldToChange; 
+            let editedField = answer.fieldToChange;
             const update = {};
             update[editedField] = answer.newValue;
             console.log(editedField)
             Employee.update(
                 update, {
-                    where: {id: answer.empSelection}
-                }
+                where: { id: answer.empSelection }
+            }
             )
-            .then(() => {
-            console.log('Employee updated'); 
-            goToMainMenu(); })
-    })
+                .then(() => {
+                    console.log('Employee updated');
+                    goToMainMenu();
+                })
+        })
 }
 
 function viewAllRoles() {
     //TODO: Foreign key configuration
     console.log("ROLES VIEW");
     Role.findAll()
-    .then((roleData)=> {
-        roles = [];
-        roleData.forEach(role => roles.push(role.toJSON()));
-        console.table(roles);
-        goToMainMenu();
-    })
+        .then((roleData) => {
+            roles = [];
+            roleData.forEach(role => roles.push(role.toJSON()));
+            console.table(roles);
+            goToMainMenu();
+        })
 }
 
 function addARole() {
@@ -179,12 +180,12 @@ function viewAllDepartments() {
     console.log('DEPARTMENT VIEW');
     //TODO: Foreign key stuff
     Department.findAll()
-    .then((departmentData)=> {
-        departments = [];
-        departmentData.forEach(department => departments.push(department.toJSON()));
-        console.table(departments);
-        goToMainMenu();
-    })
+        .then((departmentData) => {
+            departments = [];
+            departmentData.forEach(department => departments.push(department.toJSON()));
+            console.table(departments);
+            goToMainMenu();
+        })
 }
 
 function addDepartment() {
