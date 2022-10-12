@@ -1,8 +1,12 @@
-# MySQL-Employee-Tracker
+# MySQL Employee Tracker
 
 ## Description
 
 A command-line tool for to allow displaying and editing information from an SQL database by navigating menus and answering prompts. It makes use of mySQL2, Sequelize, and inquirer.
+
+## Repo
+
+Find the project code [here](https://github.com/shanep42/psychic-octo-telegram)
 
 ## Screenshots
 
